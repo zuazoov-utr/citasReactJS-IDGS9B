@@ -3,7 +3,9 @@ import '../css/formulario.css';
 
 const Formulario = ({
     modalVisible,
-    setModalVisible
+    setModalVisible,
+    pacientes,
+    setPacientes
 }) => {
     const [paciente, setPaciente] = useState('');
     const [nombrePropietario, setNombrePropietario] = useState('');
@@ -32,6 +34,28 @@ const Formulario = ({
 
     const handleCita = (e) => {
         e.preventDefault();
+        // Validation
+        if ([paciente.trim(), nombrePropietario.trim(), telefono.trim(),
+        correo.trim(), fechaAlta, sintomas.trim()].includes('')) {
+            window.alert('Error: Todos los campos son obligatorios');
+            return;
+        }
+
+        // Create an object with all values in the form
+        const nuevoPaciente = {
+            paciente,
+            nombrePropietario,
+            telefono,
+            correo,
+            fechaAlta,
+            sintomas
+        };
+        nuevoPaciente.id = Date.now();
+        console.log(nuevoPaciente);
+
+        // Save all new records
+        // state = add my object into the array
+        setPacientes([...pacientes, nuevoPaciente]);
     }
 
     return (
