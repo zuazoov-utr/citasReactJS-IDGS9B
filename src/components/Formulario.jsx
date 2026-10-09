@@ -56,6 +56,7 @@ const Formulario = ({
         // Save all new records
         // state = add my object into the array
         setPacientes([...pacientes, nuevoPaciente]);
+        setModalVisible(false);
     }
 
     return (
